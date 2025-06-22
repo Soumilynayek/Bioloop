@@ -1,0 +1,846 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BioLoop - Our Team</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #22c55e 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(22, 163, 74, 0.1) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #menuButton {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #menuButton:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(34, 197, 94, 0.4);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #22c55e 100%);
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      padding: 100px 0 0 0;
+      box-shadow: 4px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar.show {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      padding: 20px 30px;
+      font-size: 18px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+      gap: 12px;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-left-color: #22c55e;
+      transform: translateX(10px);
+      box-shadow: inset 0 0 20px rgba(34, 197, 94, 0.2);
+    }
+
+    /* Main Content */
+    .content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.1);
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 2rem 0;
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(34, 197, 94, 0.05), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a, #15803d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      color: #16a34a;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+      padding: 2rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border-radius: 20px;
+      color: white;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Team Section */
+    .team-section {
+      margin-top: 5rem;
+    }
+
+    .team-section h2 {
+      text-align: center;
+      color: #1e293b;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .team-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 6px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border-radius: 3px;
+    }
+
+    .team-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #64748b;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .member {
+      background: white;
+      border-radius: 25px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .member:hover::before {
+      left: 100%;
+    }
+
+    .member:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 70px rgba(34, 197, 94, 0.15);
+      border-color: #22c55e;
+    }
+
+    .member-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 0 auto 2rem;
+      position: relative;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      padding: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .member:hover .member-avatar {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);
+    }
+
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #f1f5f9;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #22c55e;
+    }
+
+    .member-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+      text-transform: capitalize;
+    }
+
+    .member-role {
+      font-size: 1.2rem;
+      color: #22c55e;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .member-description {
+      font-size: 1rem;
+      color: #64748b;
+      line-height: 1.7;
+      text-align: left;
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      padding: 1.5rem;
+      border-radius: 15px;
+      border-left: 5px solid #22c55e;
+      position: relative;
+    }
+
+    .member-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+
+    .skill-tag {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Impact Section */
+    .impact-section {
+      margin-top: 5rem;
+      padding: 3rem;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 25px;
+      color: white;
+      text-align: center;
+    }
+
+    .impact-section h3 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #22c55e;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .impact-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .impact-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #22c55e;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .content {
+        margin: 1rem;
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .team-section h2 {
+        font-size: 2rem;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .navbar {
+        padding: 1rem;
+      }
+
+      .stats-banner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+    }
+
+    /* Overlay for sidebar */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Floating action elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(34, 197, 94, 0.1);
+      border-radius: 50%;
+      animation: floatUp 15s infinite linear;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Elements -->
+  <div class="floating-elements" id="floatingElements"></div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="navbar-content">
+      <div class="logo">BioLoop</div>
+      <button id="menuButton">
+        <span>☰</span>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <div id="sidebar" class="sidebar">
+    <a href="#home">
+      <span>🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="services.html">
+      <span>🚀</span>
+      <span>Our Services</span>
+    </a>
+    <a href="#team">
+      <span>👥</span>
+      <span>Our Team</span>
+    </a>
+    <a href="#impact">
+      <span>🌱</span>
+      <span>Our Impact</span>
+    </a>
+    <a href="contacct.html">
+      <span>📧</span>
+      <span>Contact Us</span>
+    </a>
+    <a href="biloop.html">
+      <span>ℹ️</span>
+      <span>About BioLoop</span>
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Hero Section -->
+    <div class="hero-section" id="home">
+      <h1>BioLoop Team</h1>
+      <div class="tagline">"From Waste to Worth: Fuel Homes. Feed Soil."</div>
+      <p class="hero-description">
+        Meet the passionate innovators behind BioLoop's revolutionary circular economy solution. 
+        Our diverse team combines expertise in sustainability, technology, and community engagement 
+        to transform urban food waste into clean energy and organic compost.
+      </p>
+      
+      <div class="stats-banner">
+        <div class="stat-item">
+          <div class="stat-number">60M+</div>
+          <div class="stat-label">Tons Food Waste Targeted</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1M</div>
+          <div class="stat-label">Households by 2030</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">500K+</div>
+          <div class="stat-label">Tons CO₂e Offset Goal</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">₹14B</div>
+          <div class="stat-label">Market Opportunity</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="team-section" id="team">
+      <h2>Meet Our Innovators</h2>
+      <p class="team-subtitle">
+        A dynamic team of sustainability experts, technologists, and changemakers 
+        united by our mission to create circular cities across India.
+      </p>
+      
+      <div class="team-grid">
+        <div class="member">
+          <div class="member-avatar">
+            <img src="soumilyindore.jpg" alt="Soumily Nayek" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-placeholder" style="display: none;">👩‍💼</div>
+          </div>
+          <div class="member-name">Soumily Nayek</div>
+          <div class="member-role">Founder & CEO</div>
+          <div class="member-description">
+            Visionary leader driving BioLoop's mission to transform urban waste management. 
+            With expertise in sustainable business models and circular economy principles, 
+            Soumily oversees strategic partnerships and expansion initiatives across India's smart cities.
+          </div>
+          <div class="member-skills">
+            <span class="skill-tag">Strategy</span>
+            <span class="skill-tag">Sustainability</span>
+            <span class="skill-tag">Leadership</span>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member-avatar">
+            <img src="ushashee.jpg" alt="Ushasee Roy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-placeholder" style="display: none;">👩‍🔬</div>
+          </div>
+          <div class="member-name">Ushasee Roy</div>
+          <div class="member-role">CTO & Co-Founder</div>
+          <div class="member-description">
+            Technology architect behind BioLoop's innovative biogas systems and IoT monitoring solutions. 
+            Ushasee leads our technical team in developing scalable, efficient digesters and smart 
+            waste-to-energy conversion technologies for urban communities.
+          </div>
+          <div class="member-skills">
+            <span class="skill-tag">Biogas Technology</span>
+            <span class="skill-tag">IoT Systems</span>
+            <span class="skill-tag">Engineering</span>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member-avatar">
+            <img src="pranjali.jpg" alt="Pranjali Khatua" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-placeholder" style="display: none;">👩‍💻</div>
+          </div>
+          <div class="member-name">Pranjali Khatua</div>
+          <div class="member-role">Operations Director</div>
+          <div class="member-description">
+            Operations expert ensuring seamless execution of BioLoop's waste collection and processing services. 
+            Pranjali manages logistics, community partnerships, and operational scalability across 
+            our pilot programs and expansion cities.
+          </div>
+          <div class="member-skills">
+            <span class="skill-tag">Operations</span>
+            <span class="skill-tag">Logistics</span>
+            <span class="skill-tag">Process Optimization</span>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member-avatar">
+            <img src="debleena.jpg" alt="Debaleena Ganguly" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-placeholder" style="display: none;">👩‍🌾</div>
+          </div>
+          <div class="member-name">Debaleena Ganguly</div>
+          <div class="member-role">Sustainability Manager</div>
+          <div class="member-description">
+            Environmental scientist leading BioLoop's sustainability initiatives and impact measurement. 
+            Debaleena develops carbon offset programs, conducts environmental assessments, and ensures 
+            our solutions contribute meaningfully to climate action goals.
+          </div>
+          <div class="member-skills">
+            <span class="skill-tag">Environmental Science</span>
+            <span class="skill-tag">Carbon Footprint</span>
+            <span class="skill-tag">Impact Assessment</span>
+          </div>
+        </div>
+
+        <div class="member">
+          <div class="member-avatar">
+            <img src="saniya.jpg" alt="Sanya Kapoor" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-placeholder" style="display: none;">👩‍📈</div>
+          </div>
+          <div class="member-name">Sanya Kapoor</div>
+          <div class="member-role">Business Development Lead</div>
+          <div class="member-description">
+            Strategic business developer expanding BioLoop's market reach and partnership network. 
+            Sanya builds relationships with housing societies, municipalities, and corporate clients 
+            while developing innovative revenue models for sustainable growth.
+          </div>
+          <div class="member-skills">
+            <span class="skill-tag">Business Development</span>
+            <span class="skill-tag">Partnerships</span>
+            <span class="skill-tag">Market Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Section -->
+    <div class="impact-section" id="impact">
+      <h3>Our Collective Impact</h3>
+      <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+        Together, we're creating measurable change in urban sustainability
+      </p>
+      
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-number">12,000</div>
+          <div class="impact-label">KG Waste Diverted</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">1,800</div>
+          <div class="impact-label">M³ Biogas Produced</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">3,200</div>
+          <div class="impact-label">KG Compost Created</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">320</div>
+          <div class="impact-label">Households Served</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">6.2</div>
+          <div class="impact-label">Tons CO₂ Avoided</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-number">5,000+</div>
+          <div class="impact-label">Successful Pickups</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('show');
+      overlay.classList.toggle('show');
+    }
+
+    menuButton.addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when clicking on a link
+    const sidebarLinks = sidebar.querySelectorAll('a');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        overlay.classList.remove('show');
+      });
+    });
+
+    // Add smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Create floating elements
+    function createFloatingElements() {
+      const container = document.getElementById('floatingElements');
+      for (let i = 0; i < 20; i++) {
+        const element = document.createElement('div');
+        element.className = 'floating-element';
+        element.style.left = Math.random() * 100 + '%';
+        element.style.animationDelay = Math.random() * 15 + 's';
+        element.style.animationDuration = (15 + Math.random() * 10) + 's';
+        container.appendChild(element);
+      }
+    }
+
+    // Animate stats on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll('.stat-number, .impact-number');
+          statNumbers.forEach(stat => {
+            const finalValue = stat.textContent;
+            const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+            if (numericValue) {
+              stat.textContent = '0';
+              const increment = numericValue / 50;
+              let current = 0;
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= numericValue) {
+                  stat.textContent = finalValue;
+                  clearInterval(timer);
+                } else {
+                  stat.textContent = finalValue.replace(/\d+/, Math.floor(current));
+                }
+              }, 30);
+            }
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe stats sections
+    document.querySelectorAll('.stats-banner, .impact-section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Initialize floating elements
+    createFloatingElements();
+
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        heroSection.style.transform = `translateY(${scrolled * 0.1}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

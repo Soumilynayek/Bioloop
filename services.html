@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLoop - From Waste to Worth: Fuel Homes. Feed Soil.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2d5a27, #4a8c2a);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.04)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #a8d5a8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a8d5a8;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: linear-gradient(135deg, #3708c2, #dfcdcc);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4a8c2a, #2d5a27);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4a8c2a, #2d5a27);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #4a8c2a;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4a8c2a, #2d5a27);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Services */
+        .services-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a8d5a8;
+            margin-top: 1rem;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a8c2a;
+            margin-bottom: 0.5rem;
+        }
+        
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2d5a27, #4a8c2a);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #a09191, #a88886);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="hero">
+                <h1>BIOLOOP</h1>
+                <p class="tagline">"From Waste to Worth: Fuel Homes. Feed Soil."</p>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Urban Food Waste to Energy & Compost</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">60M</div>
+                        <p>Tons of food waste annually in urban India</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">45%</div>
+                        <p>Of city garbage is biodegradable</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">₹2000Cr</div>
+                        <p>Annual waste management burden</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">The Urban Food Waste Crisis</h2>
+            <p class="section-subtitle">Urban India dumps millions of meals daily while 200M citizens remain undernourished</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>🏭 Environmental Impact</h3>
+                    <ul style="margin-top: 1rem; list-style: none;">
+                        <li>• 20M+ tonnes of CO₂e yearly emissions</li>
+                        <li>• Methane emissions 25x more potent than CO₂</li>
+                        <li>• Major contributor to India's GHG emissions</li>
+                        <li>• Overflowing landfills across cities</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>💰 Economic Loss</h3>
+                    <ul style="margin-top: 1rem; list-style: none;">
+                        <li>• ₹600 Cr energy lost from untreated waste</li>
+                        <li>• 72% landfills lack proper infrastructure</li>
+                        <li>• 1 in 3 cities running out of landfill space</li>
+                        <li>• India ranks 94th in Global Food Waste Index</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #2d5a27;">Introducing BioLoop</h2>
+            <p class="section-subtitle">Clean energy from yesterday's leftovers. Circular, local, sustainable.</p>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🔄</div>
+                    <h3>Circular Economy</h3>
+                    <p>Converts food scraps into biogas and organic compost, supporting a closed-loop system</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🏢</div>
+                    <h3>Community-Focused</h3>
+                    <p>Designed for apartments, gated communities & local markets with modular digesters</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">📱</div>
+                    <h3>Smart Technology</h3>
+                    <p>IoT sensors track digester health, gas production via mobile app for remote management</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🌱</div>
+                    <h3>Zero Emissions</h3>
+                    <p>Advanced sealing and odor-control technology suitable for densely populated areas</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">💡</div>
+                    <h3>Economic Benefits</h3>
+                    <p>Reduces LPG consumption and landfill fees, offering long-term community savings</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="solution-icon">🚚</div>
+                    <h3>End-to-End Service</h3>
+                    <p>Complete solution: waste pickup, processing, gas delivery, compost distribution</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" style="color: #2d5a27;">How BioLoop Works</h2>
+            <p class="section-subtitle">Every banana peel and leftover meal fuels a stove or feeds a tree</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Segregate at Source</h3>
+                    <p>Households separate food waste using BioLoop-provided bins</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Collect Locally</h3>
+                    <p>Scheduled pickup from apartments and communities</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Process Waste</h3>
+                    <p>Compact digesters handle 25–200 homes efficiently</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Generate Energy</h3>
+                    <p>Clean biogas (~60% methane) stored and distributed</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Produce Compost</h3>
+                    <p>Nutrient-rich compost for gardens and landscaping</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3>Close the Loop</h3>
+                    <p>Energy powers homes, compost nourishes soil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our Core Services</h2>
+            <p class="section-subtitle">Decentralized, circular, and revenue-generating solutions</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🗑️ Waste Collection Service</h3>
+                    <p>Weekly or biweekly pickup service for homes & small businesses. Promotes source segregation and reduces landfill burden.</p>
+                    <div class="service-price">₹150<span style="font-size: 1rem;">/household/month</span></div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🔥 Biogas Sales</h3>
+                    <p>Clean cooking gas delivered to households and street vendors, reducing carbon footprint and LPG dependency.</p>
+                    <div class="service-price">₹50<span style="font-size: 1rem;">/kg equivalent</span></div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🌱 Organic Compost</h3>
+                    <p>High-quality compost sold to parks, gardens, nurseries, and urban farming initiatives.</p>
+                    <div class="service-price">₹8<span style="font-size: 1rem;">/kg</span></div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🏢 B2B Solutions</h3>
+                    <p>Custom waste-to-resource solutions for gated communities, hotels, offices, and institutions.</p>
+                    <div class="service-price">₹70,000<span style="font-size: 1rem;">/month avg</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #2d5a27;">Real Impact, Measurable Results</h2>
+            <p class="section-subtitle">Current pilot achievements demonstrate scalable potential</p>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-number">320</div>
+                    <p><strong>Households Served</strong><br>Active community participants</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">12,000</div>
+                    <p><strong>KG Waste Diverted</strong><br>From landfills to sustainable processing</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">1,800</div>
+                    <p><strong>M³ Biogas Produced</strong><br>Clean energy replacing LPG</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">3,200</div>
+                    <p><strong>KG Compost Created</strong><br>High-quality soil fertilizer</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">6.2</div>
+                    <p><strong>Tons CO₂ Avoided</strong><br>Emissions prevented annually</p>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-number">5,000+</div>
+                    <p><strong>Pickups Completed</strong><br>Low-emission waste collection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Join the Circular Economy?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Transform your community's waste into valuable resources</p>
+            
+            <div>
+                <a href="#contact" class="cta-button">Start Your Community Program</a>
+                <a href="#investor" class="cta-button">Investment Opportunities</a>
+            </div>
+            
+            <div style="margin-top: 3rem; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                <h3>Vision 2030: Circular Cities</h3>
+                <p style="margin: 1rem 0;">1 Million Circular Households | 500K households onboarded | 150 community units across India</p>
+                <p>Reduce >250,000 tons of food waste/year | Save 40,000+ LPG cylinders annually | Offset over 500,000 tons of CO₂e</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.solution-card, .impact-card, .service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Startup - Contact Us</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --accent: #f093fb;
+      --dark: #1a1a2e;
+      --light: #ffffff;
+      --gray-100: #f8fafc;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-700);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+    .shape:nth-child(2) { width: 120px; height: 120px; top: 60%; left: 80%; animation-delay: 2s; }
+    .shape:nth-child(3) { width: 60px; height: 60px; top: 80%; left: 20%; animation-delay: 4s; }
+    .shape:nth-child(4) { width: 100px; height: 100px; top: 10%; right: 20%; animation-delay: 1s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-back {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-back:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    }
+
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-card:hover::after {
+      opacity: 0.05;
+    }
+
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      color: white;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .contact-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .contact-link:hover::after {
+      width: 100%;
+    }
+
+    /* Contact Form */
+    .form-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 3rem;
+    }
+
+    .form-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .form-subtitle {
+      text-align: center;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid var(--gray-200);
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      background: white;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gray-300);
+      border-radius: 4px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .custom-checkbox.checked {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .custom-checkbox.checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -10px rgba(102, 126, 234, 0.4);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Quick Contact */
+    .quick-contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .quick-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 2px solid transparent;
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--gray-700);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .quick-btn:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .quick-btn-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* Social Section */
+    .social-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .social-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .social-subtitle {
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .social-link:hover::before {
+      left: 100%;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 3rem;
+    }
+
+    .faq-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--gray-200);
+      padding: 1.5rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--gray-800);
+      transition: color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      background: var(--gray-200);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      background: var(--primary);
+      color: white;
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-top: 1rem;
+    }
+
+    /* Map Section */
+    .map-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    .map-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--gray-500);
+      border: 2px dashed var(--gray-300);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+
+    /* Toast Notifications */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--success);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-xl);
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      z-index: 10000;
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast.error {
+      background: var(--error);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-link {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .quick-contact {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .contact-card,
+      .form-section,
+      .social-section,
+      .faq-section,
+      .map-section {
+        background: rgba(61, 83, 119, 0.95);
+        color: var(--gray-100);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .contact-title,
+      .form-title,
+      .social-title,
+      .faq-title,
+      .map-title {
+        color: var(--gray-100);
+      }
+
+      .form-input,
+      .form-textarea,
+      .form-select {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: var(--gray-600);
+        color: var(--gray-100);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">StartupCo</div>
+      <a href="index.html" class="nav-back">
+        <span>←</span> Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1 class="hero-title">Let's Connect</h1>
+      <p class="hero-subtitle">
+        Ready to transform your ideas into reality? We're here to help you every step of the way. 
+        Reach out and let's start building something amazing together.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Support</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">< 2h</span>
+          <span class="stat-label">Response Time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Contact Options -->
+    <div class="quick-contact">
+      <a href="mailto:info@yourstartup.com" class="quick-btn">
+        <div class="quick-btn-icon">📧</div>
+        <div>
+          <div>Email Us</div>
+          <small>Quick Response</small>
+        </div>
+      </a>
+      <a href="tel:+1234567890" class="quick-btn">
+        <div class="quick-btn-icon">📞</div>
+        <div>
+          <div>Call Now</div>
+          <small>Instant Support</small>
+        </div>
+      </a>
+      <a href="https://calendly.com/yourstartup" class="quick-btn" target="_blank">
+        <div class="quick-btn-icon">📅</div>
+        <div>
+          <div>Book Meeting</div>
+          <small>Schedule Time</small>
+        </div>
+      </a>
+      <a href="#chat" class="quick-btn" onclick="openChat()">
+        <div class="quick-btn-icon">💬</div>
+        <div>
+          <div>Live Chat</div>
+          <small>Available Now</small>
+        </div>
+      </a>
+    </div>
+
+    <!-- Contact Information Grid -->
+    <div class="contact-grid">
+      <div class="contact-card" onclick="window.location.href='mailto:info@yourstartup.com'">
+        <div class="contact-icon">📧</div>
+        <div class="contact-title">Email Support</div>
+        <div class="contact-info">
+          <a href="mailto:info@yourstartup.com" class="contact-link">info@yourstartup.com</a><br>
+          <a href="mailto:support@yourstartup.com" class="contact-link">support@yourstartup.com</a>
+        </div>
+        <div class="contact-info">
+          For business inquiries, partnerships, and general support
+        </div>
+      </div>
+
+      <div class="contact-card" onclick="window.location.href='tel:+1234567890'">
+        <div class="contact-icon">📱</div>
+        <div class="contact-title">Phone Support</div>
+        <div class="contact-info">
+          <a href="tel:+1234567890" class="contact-link">+1 (234) 567-8900</a><br>
+          <a href="tel:+1234567891" class="contact-link">+1 (234) 567-8901</a>
+        </div>
+        <div class="contact-info">
+          Monday - Friday: 9 AM - 6 PM EST<br>
+          Weekend Emergency: Available
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div class="contact-title">Visit Our Office</div>
+        <div class="contact-info">
+          123 Innovation Street<br>
+          Suite 100, Tech District<br>
+          San Francisco, CA 90210<br>
+          United States
+        </div>
+        <div class="contact-info">
+          Open for visits by appointment
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="form-section">
+      <h2 class="form-title">Send Us a Message</h2>
+      <p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+      <form id="contactForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name *</label>
+            <input type="text" id="firstName" name="firstName" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name *</label>
+            <input type="text" id="lastName" name="lastName" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" id="company" name="company" class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <label for="budget" class="form-label">Project Budget</label>
+            <select id="budget" name="budget" class="form-select">
+              <option value="">Select Budget Range</option>
+              <option value="under-10k">Under $10,000</option>
+              <option value="10k-25k">$10,000 - $25,000</option>
+              <option value="25k-50k">$25,000 - $50,000</option>
+              <option value="50k-100k">$50,000 - $100,000</option>
+              <option value="100k-plus">$100,000+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service" class="form-label">Service Interested In</label>
+          <select id="service" name="service" class="form-select">
+            <option value="">Select a Service</option>
+            <option value="web-development">Web Development</option>
+            <option value="mobile-app">Mobile App Development</option>
+            <option value="ui-ux-design">UI/UX Design</option>
+            <option value="digital-marketing">Digital Marketing</option>
+            <option value="consulting">Business Consulting</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject" class="form-label">Subject *</label>
+          <input type="text" id="subject" name="subject" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label">Message *</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project, goals, and how we can help you..." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="checkbox-wrapper">
+            <div class="custom-checkbox" id="newsletter"></div>
+            <label for="newsletter">Subscribe to our newsletter for updates and tips</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="checkbox-wrapper">
+            <div class="custom-checkbox" id="terms"></div>
+            <label for="terms">I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a> *</label>
+          </div>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Send Message</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h3 class="faq-title">Frequently Asked Questions</h3>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is your typical response time?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          We typically respond to all inquiries within 2-4 hours during business hours (9 AM - 6 PM EST). For urgent matters, please call us directly for immediate assistance.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Do you offer free consultations?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          Yes! We offer a complimentary 30-minute consultation to discuss your project needs and how we can help. This includes a basic project assessment and strategic recommendations.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What information should I include in my message?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          Please include details about your project goals, timeline, budget range, and any specific requirements. The more information you provide, the better we can tailor our response to your needs.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Do you work with international clients?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          Absolutely! We work with clients worldwide and have experience managing projects across different time zones. We use modern collaboration tools to ensure smooth communication.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What are your payment terms?</span>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          We typically work with a 50% upfront payment and 50% upon completion for smaller projects. For larger projects, we can arrange milestone-based payments. All payment terms are discussed and agreed upon before project commencement.
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media Section -->
+    <div class="social-section">
+      <h3 class="social-title">Connect With Us</h3>
+      <p class="social-subtitle">Follow us on social media for the latest updates, insights, and behind-the-scenes content</p>
+      <div class="social-links">
+        <a href="https://instagram.com/yourstartup" target="_blank" class="social-link">
+          📷 Instagram
+        </a>
+        <a href="https://linkedin.com/company/yourstartup" target="_blank" class="social-link">
+          💼 LinkedIn
+        </a>
+        <a href="https://twitter.com/yourstartup" target="_blank" class="social-link">
+          🐦 Twitter
+        </a>
+        <a href="https://facebook.com/yourstartup" target="_blank" class="social-link">
+          📘 Facebook
+        </a>
+        <a href="https://youtube.com/yourstartup" target="_blank" class="social-link">
+          📺 YouTube
+        </a>
+        <a href="https://discord.gg/yourstartup" target="_blank" class="social-link">
+          🎮 Discord
+        </a>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-section">
+      <h3 class="map-title">Find Our Office</h3>
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <div>Interactive Map Coming Soon</div>
+        <small>123 Innovation Street, Tech District, CA 90210</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Enhanced form submission with validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Validate required fields
+      const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        const input = document.getElementById(field);
+        if (!input.value.trim()) {
+          input.style.borderColor = 'var(--error)';
+          isValid = false;
+        } else {
+          input.style.borderColor = 'var(--gray-200)';
+        }
+      });
+
+      // Check if terms are accepted
+      const termsCheckbox = document.getElementById('terms');
+      if (!termsCheckbox.classList.contains('checked')) {
+        showToast('Please accept the Terms of Service and Privacy Policy', 'error');
+        return;
+      }
+      
+      if (!isValid) {
+        showToast('Please fill in all required fields', 'error');
+        return;
+      }
+      
+      // Simulate form submission
+      const submitBtn = document.querySelector('.submit-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const originalText = btnText.textContent;
+      
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      
+      // Simulate API call
+      setTimeout(() => {
+        showToast('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
+        this.reset();
+        resetCheckboxes();
+        submitBtn.disabled = false;
+        btnText.textContent = originalText;
+      }, 2000);
+    });
+
+    // Custom checkbox functionality
+    document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('click', function() {
+        this.classList.toggle('checked');
+      });
+    });
+
+    function resetCheckboxes() {
+      document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+        checkbox.classList.remove('checked');
+      });
+    }
+
+    // FAQ toggle functionality
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        item.querySelector('.faq-toggle').textContent = '+';
+      });
+      
+      // Toggle current item
+      if (!isActive) {
+        faqItem.classList.add('active');
+        element.querySelector('.faq-toggle').textContent = '−';
+      }
+    }
+
+    // Toast notification function
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // Chat functionality
+    function openChat() {
+      showToast('Live chat feature coming soon! Please use email or phone for immediate assistance.', 'info');
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Form input animations
+    document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and sections
+    document.querySelectorAll('.contact-card, .form-section, .social-section, .faq-section, .map-section').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Real-time form validation
+    document.getElementById('email').addEventListener('input', function() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (this.value && !emailRegex.test(this.value)) {
+        this.style.borderColor = 'var(--error)';
+      } else {
+        this.style.borderColor = 'var(--gray-200)';
+      }
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+      // Remove non-numeric characters
+      this.value = this.value.replace(/\D/g, '');
+      // Format as (XXX) XXX-XXXX
+      if (this.value.length >= 6) {
+        this.value = this.value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+      } else if (this.value.length >= 3) {
+        this.value = this.value.replace(/(\d{3})(\d{3})/, '($1) $2');
+      }
+    });
+
+    // Auto-resize textarea
+    document.getElementById('message').addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+
+    // Contact card click effects
+    document.querySelectorAll('.contact-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Preload animations
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+      
+      // Stagger animation for hero stats
+      const statItems = document.querySelectorAll('.stat-item');
+      statItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+
+    // Add loading state to body
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+
+    // Initialize stat counters
+    function animateStats() {
+      const stats = [
+        { element: document.querySelector('.stat-number'), target: '24/7', duration: 1000 },
+        { element: document.querySelectorAll('.stat-number')[1], target: '< 2h', duration: 1200 },
+        { element: document.querySelectorAll('.stat-number')[2], target: '500+', duration: 1500 }
+      ];
+      
+      // Add counter animation for the 500+ stat
+      const counterElement = document.querySelectorAll('.stat-number')[2];
+      let currentCount = 0;
+      const targetCount = 500;
+      const duration = 2000;
+      const increment = targetCount / (duration / 50);
+      
+      const counter = setInterval(() => {
+        currentCount += increment;
+        if (currentCount >= targetCount) {
+          currentCount = targetCount;
+          clearInterval(counter);
+          counterElement.textContent = currentCount + '+';
+        } else {
+          counterElement.textContent = Math.floor(currentCount) + '+';
+        }
+      }, 50);
+    }
+
+    // Trigger stats animation when in view
+    const heroStats = document.querySelector('.hero-stats');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    });
+    statsObserver.observe(heroStats);
+  </script>
+</body>
+</html>
